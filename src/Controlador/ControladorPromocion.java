@@ -14,13 +14,14 @@ import Modelo.Promocion;
  */
 public class ControladorPromocion {
     public static AgregarPromocion v3 =  new AgregarPromocion();
-    
+    /*
     public static void agregarPromocion(){
         Promocion pro1 = new Promocion(v3.nombre.getText(), v3.descripcion.getText(),
                 (String)v3.producto.getSelectedItem(),
                 Integer.parseInt(v3.cantidad.getText()),Double.parseDouble(v3.costo.getText()));
         System.out.println(pro1.toString());
     }
+*/
     
     public static void mostrar(){
         v3.setVisible(true);
