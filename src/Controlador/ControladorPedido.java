@@ -30,7 +30,7 @@ public class ControladorPedido {
     }
     
     public static void agregarPedido(){
-       //Pedido p1 = new Pedido();
+       
     }
     
     public static void mostrar(){
