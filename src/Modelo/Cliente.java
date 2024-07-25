@@ -10,24 +10,14 @@ package Modelo;
  */
 public class Cliente {
     
-    private int idCliente;
+    //private int idCliente;
     private String nombre;
     private String telefono;
     private String direccion;
     private String rfc;
-    private Pedido pedido;
+    //private Pedido pedido;
 
-    public Cliente( String nombre, String telefono, String direccion, String rfc, Pedido pedido) {
-        //this.idCliente = idCliente;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.rfc = rfc;
-        this.pedido = pedido;
-    }
-
-    public Cliente(String nombre, String direccion,String telefono, String rfc) {
-        //this.idCliente = idCliente;
+    public Cliente(String nombre, String telefono, String direccion, String rfc) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
@@ -58,22 +48,6 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
     public String getRfc() {
         return rfc;
     }
@@ -82,16 +56,4 @@ public class Cliente {
         this.rfc = rfc;
     }
     
-    public void crearCliente(){
-        
-    }
-    
-    public void eliminarCliente(){
-        
-    }
-
-    @Override
-    public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", telefono=" + telefono + ", direccion=" + direccion + ", rfc=" + rfc + '}';
-    }
 }

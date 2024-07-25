@@ -29,11 +29,18 @@ public class ControladorClientes {
     public static Statement st;
     public static ResultSet rs;
     public static Conexion con = new Conexion();
+    public static AgregarCliente vAgregarC = new AgregarCliente();
+    //public static Cliente cliente =  new Cliente();
     
     public static void mostrar(JDesktopPane principal, JInternalFrame vClientes){
         principal.add(vClientes);
         vClientes.show();
         consultar();
+    }
+    
+    public static void mostrar2(JDesktopPane principal, JInternalFrame vAgregarC){
+        principal.add(vAgregarC);
+        vAgregarC.show();
     }
     
     public static void consultar(){
@@ -57,5 +64,27 @@ public class ControladorClientes {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
+    }
+    
+    public static void insertarCliente(){
+        String nom = vAgregarC.nombre.getText();
+        String tel = vAgregarC.telefono.getText();
+        String dir = vAgregarC.direccion.getText();
+        String rfc = vAgregarC.rfc.getText();
+        String es = "activo";
+        try {
+            if(vAgregarC.nombre.equals("") || vAgregarC.telefono.equals("") || vAgregarC.direccion.equals("") || vAgregarC.rfc.equals("")){
+                JOptionPane.showMessageDialog(null, "Falta agregar datos");
+            }else{
+                String sql = "INSERT INTO clientes (nombre, telefono, direccion, rfc, estatus) values ('"+nom+"','"+tel+"','"+dir+"','"+rfc+"','"+es+"')";
+                conexion = con.obtenerConexion();
+                st = conexion.createStatement();
+                st.executeUpdate(sql);
+            } 
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
+        
+        //public static Cliente cliente = new Cliente();
     }
 }

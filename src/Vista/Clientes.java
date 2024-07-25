@@ -5,6 +5,7 @@
 package Vista;
 
 import Controlador.ControladorClientes;
+import static Controlador.ControladorClientes.vAgregarC;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         initComponents();
         //ControladorClientes.consultar();
     }
+    public static Principal p1 = new Principal();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,7 +38,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -97,7 +99,12 @@ public class Clientes extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.LINE_END);
 
-        jButton2.setText("Agregar cliente");
+        btnAgregar.setText("Agregar cliente");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Modificar");
 
@@ -109,7 +116,7 @@ public class Clientes extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(151, 151, 151)
-                .addComponent(jButton2)
+                .addComponent(btnAgregar)
                 .addGap(124, 124, 124)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
@@ -121,7 +128,7 @@ public class Clientes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnAgregar)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addGap(34, 34, 34))
@@ -176,10 +183,15 @@ public class Clientes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // TODO add your handling code here:
+        //ControladorClientes.mostrar2(p1.principal, vAgregarC);
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

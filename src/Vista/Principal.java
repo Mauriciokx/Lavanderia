@@ -11,6 +11,7 @@ import Controlador.ControladorProducto;
 import static Controlador.ControladorProducto.vProductos;
 import Controlador.ControladorPromocion;
 import static Controlador.ControladorPromocion.vPromociones;
+import static Controlador.ControladorClientes.vAgregarC;
 /**
  *
  * @author Mauricio Pacheco
@@ -41,6 +42,7 @@ public class Principal extends javax.swing.JFrame {
         pedidos = new javax.swing.JMenuItem();
         menu1 = new javax.swing.JMenu();
         clientes = new javax.swing.JMenuItem();
+        agregarCli = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         catalogo = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -95,6 +97,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         menu1.add(clientes);
+
+        agregarCli.setText("Agregar Cliente");
+        agregarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarCliActionPerformed(evt);
+            }
+        });
+        menu1.add(agregarCli);
 
         jMenuBar1.add(menu1);
 
@@ -173,6 +183,11 @@ public class Principal extends javax.swing.JFrame {
         ControladorPromocion.mostrar(principal, vPromociones);
     }//GEN-LAST:event_promocionesActionPerformed
 
+    private void agregarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarCliActionPerformed
+        // TODO add your handling code here:
+        ControladorClientes.mostrar2(principal, vAgregarC);
+    }//GEN-LAST:event_agregarCliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -211,16 +226,17 @@ public class Principal extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem catalogo;
-    private javax.swing.JMenuItem clientes;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu menu1;
-    private javax.swing.JMenu menu6;
-    private javax.swing.JMenuItem pedidos;
+    public javax.swing.JMenuItem agregarCli;
+    public javax.swing.JMenuItem catalogo;
+    public javax.swing.JMenuItem clientes;
+    public javax.swing.JMenu jMenu3;
+    public javax.swing.JMenu jMenu4;
+    public javax.swing.JMenu jMenu5;
+    public javax.swing.JMenuBar jMenuBar1;
+    public javax.swing.JMenu menu1;
+    public javax.swing.JMenu menu6;
+    public javax.swing.JMenuItem pedidos;
     public javax.swing.JDesktopPane principal;
-    private javax.swing.JMenuItem promociones;
+    public javax.swing.JMenuItem promociones;
     // End of variables declaration//GEN-END:variables
 }
