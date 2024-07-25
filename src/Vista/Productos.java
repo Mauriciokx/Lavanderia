@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package Vista2;
+package Vista;
 
 /**
  *
  * @author Mauricio Pacheco
  */
-public class Pedidos extends javax.swing.JInternalFrame {
+public class Productos extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Pedidos
      */
-    public Pedidos() {
+    public Productos() {
         initComponents();
     }
 
@@ -43,7 +43,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel1.setText("Pedidos");
+        jLabel1.setText("Productos");
 
         jButton1.setText("Buscar");
 
@@ -90,7 +90,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.LINE_END);
 
-        jButton2.setText("Agregar pedido");
+        jButton2.setText("Agregar cliente");
 
         jButton3.setText("Modificar");
 
@@ -105,7 +105,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 .addComponent(jButton2)
                 .addGap(124, 124, 124)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(194, 194, 194))
         );
@@ -137,17 +137,17 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "No", "Nombre", "Estatus de entrega"
+                "No", "Nombre", "Unidad", "Costo por unidad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

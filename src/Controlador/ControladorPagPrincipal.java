@@ -4,7 +4,7 @@
  */
 
 package Controlador;
-import Vista.PagPrincipal;
+import Vista.Principal;
 
 /**
  *
@@ -13,7 +13,7 @@ import Vista.PagPrincipal;
  */
 public class ControladorPagPrincipal {
     
-    public static PagPrincipal v6 = new PagPrincipal();
+    public static Principal v6 = new Principal();
     
     public void mostrar(){
         v6.setVisible(true);

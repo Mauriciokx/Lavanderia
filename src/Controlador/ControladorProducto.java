@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class ControladorProducto {
     public static AgregarProducto v2 = new AgregarProducto();
-    
+    /*
     public static void agregraProducto(){
         try {
             Producto p1 = new Producto(v2.nombre.getText(), (String)v2.unidad.getSelectedItem(),
@@ -26,6 +26,7 @@ public class ControladorProducto {
             v2.costo.setText("");
         }
     }
+*/
 
     public static void mostrar(){
         v2.setVisible(true);

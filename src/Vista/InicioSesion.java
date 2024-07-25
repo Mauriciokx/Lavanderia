@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Vista.*;
 import Controlador.ControladorLogin;
 
 /**
@@ -160,6 +161,7 @@ public class InicioSesion extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
