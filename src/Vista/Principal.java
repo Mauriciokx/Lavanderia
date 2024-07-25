@@ -37,7 +37,7 @@ public class Principal extends javax.swing.JFrame {
 
         principal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        pedido = new javax.swing.JMenu();
+        menu6 = new javax.swing.JMenu();
         pedidos = new javax.swing.JMenuItem();
         menu1 = new javax.swing.JMenu();
         clientes = new javax.swing.JMenuItem();
@@ -62,11 +62,11 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        pedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes icon/pedido.png"))); // NOI18N
-        pedido.setText("Pedidos");
-        pedido.addActionListener(new java.awt.event.ActionListener() {
+        menu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes icon/pedido.png"))); // NOI18N
+        menu6.setText("Pedidos");
+        menu6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pedidoActionPerformed(evt);
+                menu6ActionPerformed(evt);
             }
         });
 
@@ -76,9 +76,9 @@ public class Principal extends javax.swing.JFrame {
                 pedidosActionPerformed(evt);
             }
         });
-        pedido.add(pedidos);
+        menu6.add(pedidos);
 
-        jMenuBar1.add(pedido);
+        jMenuBar1.add(menu6);
 
         menu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes icon/clientes.png"))); // NOI18N
         menu1.setText("Clientes");
@@ -144,9 +144,9 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidoActionPerformed
+    private void menu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pedidoActionPerformed
+    }//GEN-LAST:event_menu6ActionPerformed
 
     private void pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosActionPerformed
         // TODO add your handling code here:
@@ -218,7 +218,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu1;
-    private javax.swing.JMenu pedido;
+    private javax.swing.JMenu menu6;
     private javax.swing.JMenuItem pedidos;
     public javax.swing.JDesktopPane principal;
     private javax.swing.JMenuItem promociones;

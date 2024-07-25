@@ -8,26 +8,54 @@ import Modelo.Cliente;
 import Vista.Clientes;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import Conexion.Conexion;
+import java.sql.Connection;
+import javax.swing.table.DefaultTableModel;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import Conexion.Conexion;
 
 /**
  *
  * @author Mauricio Pacheco
  */
 public class ControladorClientes {
-    public static AgregarCliente v1 = new AgregarCliente();
+    //public static AgregarCliente v1 = new AgregarCliente();
     public static Clientes vClientes = new Clientes();
-   
-    /*
-    public static void agregarCliente(){
-        Cliente c1 = new Cliente(v1.nombre.getText(), v1.direccion.getText(),
-            v1.telefono.getText(), v1.rfc.getText());
-        //System.out.println(v1.nombre.getText());
-        System.out.println(c1.toString());
-    }
-*/
+    public static Connection conexion;
+    public static DefaultTableModel modelo;
+    public static Statement st;
+    public static ResultSet rs;
+    public static Conexion con = new Conexion();
     
     public static void mostrar(JDesktopPane principal, JInternalFrame vClientes){
         principal.add(vClientes);
         vClientes.show();
+        consultar();
+    }
+    
+    public static void consultar(){
+        String sql = "select idClientes, nombre, telefono, direccion, rfc from clientes";
+        try {
+            conexion = con.obtenerConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(sql);
+            Object[] datos = new Object[5];
+            modelo = (DefaultTableModel) vClientes.listClientes.getModel();
+            
+            while(rs.next()){
+                datos[0] = rs.getInt("IdClientes");
+                datos[1] = rs.getString("nombre");
+                datos[2] = rs.getString("telefono");
+                datos[3] = rs.getString("direccion");
+                datos[4] = rs.getString("rfc");
+                modelo.addRow(datos);
+            }
+            vClientes.listClientes.setModel(modelo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
     }
 }
