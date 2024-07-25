@@ -7,6 +7,9 @@ package Controlador;
 
 import Vista.AgregarPromocion;
 import Modelo.Promocion;
+import Vista.Promociones;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 /**
  *
  * @author Mauricio Pacheco
@@ -14,6 +17,7 @@ import Modelo.Promocion;
  */
 public class ControladorPromocion {
     public static AgregarPromocion v3 =  new AgregarPromocion();
+    public static Promociones vPromociones = new Promociones();
     /*
     public static void agregarPromocion(){
         Promocion pro1 = new Promocion(v3.nombre.getText(), v3.descripcion.getText(),
@@ -23,7 +27,8 @@ public class ControladorPromocion {
     }
 */
     
-    public static void mostrar(){
-        v3.setVisible(true);
+    public static void mostrar(JDesktopPane principal, JInternalFrame vPromociones){
+        principal.add(vPromociones);
+        vPromociones.show();
     }
 }

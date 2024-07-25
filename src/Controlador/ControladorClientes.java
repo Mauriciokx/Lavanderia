@@ -5,6 +5,9 @@
 package Controlador;
 import Vista.AgregarCliente;
 import Modelo.Cliente;
+import Vista.Clientes;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -12,6 +15,7 @@ import Modelo.Cliente;
  */
 public class ControladorClientes {
     public static AgregarCliente v1 = new AgregarCliente();
+    public static Clientes vClientes = new Clientes();
    
     /*
     public static void agregarCliente(){
@@ -22,7 +26,8 @@ public class ControladorClientes {
     }
 */
     
-    public static void mostrar(){
-        v1.setVisible(true);
+    public static void mostrar(JDesktopPane principal, JInternalFrame vClientes){
+        principal.add(vClientes);
+        vClientes.show();
     }
 }

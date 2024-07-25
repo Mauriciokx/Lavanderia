@@ -7,6 +7,9 @@ package Controlador;
 
 import Vista.AgregarProducto;
 import Modelo.Producto;
+import Vista.Productos;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 /**
  *
@@ -15,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class ControladorProducto {
     public static AgregarProducto v2 = new AgregarProducto();
+    public static Productos vProductos = new Productos();
     /*
     public static void agregraProducto(){
         try {
@@ -28,7 +32,8 @@ public class ControladorProducto {
     }
 */
 
-    public static void mostrar(){
-        v2.setVisible(true);
+    public static void mostrar(JDesktopPane principal, JInternalFrame vProductos){
+        principal.add(vProductos);
+        vProductos.show();
     }
 }

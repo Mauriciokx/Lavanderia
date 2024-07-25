@@ -8,6 +8,10 @@ package Controlador;
 import Vista.AgregarPedido;
 import Modelo.Pedido;
 import Modelo.Producto;
+import Vista.Pedidos;
+import Vista.Principal;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +22,9 @@ import javax.swing.table.DefaultTableModel;
 public class ControladorPedido {
     public static AgregarPedido v4 = new AgregarPedido();
     public static DefaultTableModel model = new DefaultTableModel();
+    int con = 0;
+    public static Principal vPrinciapal = new Principal();
+    public static Pedidos vPedidos = new Pedidos();
     
     public static void agregarProducto(){
         //falta jalar bien los datos falta hacer auto incrementable el no
@@ -33,11 +40,12 @@ public class ControladorPedido {
        
     }
     
-    public static void mostrar(){
+    public static void mostrar(JDesktopPane principal, JInternalFrame vPedidos){
         model.addColumn("No");
         model.addColumn("Producto");
         model.addColumn("Cantidad");
         model.addColumn("Precio");
-        v4.setVisible(true);
+        principal.add(vPedidos);
+        vPedidos.show();
     }
 }
