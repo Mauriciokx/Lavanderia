@@ -38,7 +38,11 @@ public class Productos extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        listProductos = new javax.swing.JTable();
+
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -135,12 +139,9 @@ public class Productos extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel5, java.awt.BorderLayout.LINE_START);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        listProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "No", "Nombre", "Unidad", "Costo por unidad"
@@ -154,7 +155,7 @@ public class Productos extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(listProductos);
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -185,7 +186,7 @@ public class Productos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    public javax.swing.JTable listProductos;
     // End of variables declaration//GEN-END:variables
 }

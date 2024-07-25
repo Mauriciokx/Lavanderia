@@ -4,13 +4,6 @@
  */
 package Principal;
 
-
-import Controlador.ControladorClientes;
-import Controlador.ControladorProducto;
-import Controlador.ControladorPromocion;
-import Controlador.ControladorPedido;
-import Conexion.Conexion;
-import java.sql.Connection;
 import Controlador.ControladorLogin;
 /**
  * 
@@ -18,11 +11,6 @@ import Controlador.ControladorLogin;
  */
 public class app {
     public static void main(String args[]){
-        //ControladorClientes.mostrar();
-        //ControladorProducto.mostrar();
-        //ControladorPromocion.mostrar();
-        //ControladorPedido.mostrar();
-        //Connection conexion = Conexion.obtenerConexion();
         ControladorLogin.mostrar();
     }
 }
