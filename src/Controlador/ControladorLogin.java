@@ -24,30 +24,13 @@ public class ControladorLogin {
     public static Connection conexion = Conexion.obtenerConexion();
     public static InicioSesion v5 = new InicioSesion();
     public static ControladorPagPrincipal v7 = new ControladorPagPrincipal();
-    /*
-    public static void validar(String nombre, String contraseña){
-        String query = "SELECT usuario FROM usuarios WHERE usuario = ? AND contraseña = ?";
-        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
-            preparedStatement.setString(1, nombre);
-            preparedStatement.setString(2, contraseña);
-            
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    // Usuario autenticado
-                    v7.mostrar();
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }  
-    }
-    */
     
     public static void comprobar(String nombre, String contraseña){
         
         boolean ban= Login.buscarUsuario(nombre, contraseña);
         if(ban){
             v7.mostrar();
+            v5.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Datos incorrectos");
         }
