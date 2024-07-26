@@ -12,6 +12,7 @@ import static Controlador.ControladorProducto.vProductos;
 import Controlador.ControladorPromocion;
 import static Controlador.ControladorPromocion.vPromociones;
 import static Controlador.ControladorClientes.vAgregarC;
+import static Controlador.ControladorPedido.vAgregarPed;
 import static Controlador.ControladorProducto.vAgregarP;
 import static Controlador.ControladorPromocion.vAgregarPr;
 /**
@@ -42,6 +43,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menu6 = new javax.swing.JMenu();
         pedidos = new javax.swing.JMenuItem();
+        agregarPedido = new javax.swing.JMenuItem();
         menu1 = new javax.swing.JMenu();
         clientes = new javax.swing.JMenuItem();
         agregarCli = new javax.swing.JMenuItem();
@@ -83,6 +85,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         menu6.add(pedidos);
+
+        agregarPedido.setText("Agregar pedido");
+        agregarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarPedidoActionPerformed(evt);
+            }
+        });
+        menu6.add(agregarPedido);
 
         jMenuBar1.add(menu6);
 
@@ -218,6 +228,11 @@ public class Principal extends javax.swing.JFrame {
         ControladorPromocion.mostrar2(principal, vAgregarPr);
     }//GEN-LAST:event_agregarPromocionActionPerformed
 
+    private void agregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarPedidoActionPerformed
+        // TODO add your handling code here:
+        ControladorPedido.mostrar2(principal, vAgregarPed);
+    }//GEN-LAST:event_agregarPedidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,6 +272,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JMenuItem agregarCli;
+    public javax.swing.JMenuItem agregarPedido;
     public javax.swing.JMenuItem agregarProducto;
     public javax.swing.JMenuItem agregarPromocion;
     public javax.swing.JMenuItem catalogo;
