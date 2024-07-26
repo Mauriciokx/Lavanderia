@@ -47,7 +47,7 @@ public class AgregarPedido extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         cantidad = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAgregarPedido = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         fEntrega = new com.toedter.calendar.JDateChooser();
@@ -169,7 +169,12 @@ public class AgregarPedido extends javax.swing.JInternalFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Generar pedido");
+        btnAgregarPedido.setText("Generar pedido");
+        btnAgregarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPedidoActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cancelar");
 
@@ -203,7 +208,7 @@ public class AgregarPedido extends javax.swing.JInternalFrame {
                         .addGap(61, 61, 61))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jButton3)
+                .addComponent(btnAgregarPedido)
                 .addGap(72, 72, 72)
                 .addComponent(jButton4)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -227,7 +232,7 @@ public class AgregarPedido extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
-                    .addComponent(jButton3))
+                    .addComponent(btnAgregarPedido))
                 .addGap(29, 29, 29))
         );
 
@@ -250,13 +255,18 @@ public class AgregarPedido extends javax.swing.JInternalFrame {
         ControladorPedido.agregarProducto();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void btnAgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPedidoActionPerformed
+        // TODO add your handling code here:
+        ControladorPedido.agregarPedido();
+    }//GEN-LAST:event_btnAgregarPedidoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAgregarPedido;
     public javax.swing.JTextField cantidad;
     public com.toedter.calendar.JDateChooser fEntrega;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

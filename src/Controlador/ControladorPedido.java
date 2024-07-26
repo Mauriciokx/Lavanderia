@@ -19,6 +19,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -51,6 +53,22 @@ public class ControladorPedido {
     }
 
     public static void agregarPedido(){
+        String nomCliente = (String)vAgregarPed.nomCliente.getSelectedItem();
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fechaI = currentDate.format(formatter);
+        String fechaP = vAgregarPed.fEntrega.getDateFormatString();
+        String es = "activo";
+        
+        try {
+            String sql = "insert into pedidos (nombreCliente, fechaIngreso, fechaEntregaP, estatus) values ('"+nomCliente+"','"+fechaI+"','"+fechaP+"','"+es+"')";
+            conexion = con.obtenerConexion();
+            st = conexion.createStatement();
+            st.executeUpdate(sql);
+            vAgregarPed.dispose();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
        
     }
     
