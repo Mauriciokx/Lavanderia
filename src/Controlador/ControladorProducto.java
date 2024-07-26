@@ -25,6 +25,7 @@ import java.sql.SQLException;
 public class ControladorProducto {
     //public static AgregarProducto v2 = new AgregarProducto();
     public static Productos vProductos = new Productos();
+    public static AgregarProducto vAgregarP = new AgregarProducto();
     public static Connection conexion;
     public static DefaultTableModel modelo;
     public static Statement st;
@@ -34,11 +35,17 @@ public class ControladorProducto {
     public static void mostrar(JDesktopPane principal, JInternalFrame vProductos){
         principal.add(vProductos);
         vProductos.show();
+        limpiarTabla();
         consultar();
     }
     
+    public static void mostrar2(JDesktopPane principal, JInternalFrame vAgregarP){
+        principal.add(vAgregarP);
+        vAgregarP.show();
+    }
+    
     public static void consultar(){
-        String sql = "select idProducto, nombre, unidad, precio from productos where estatus = 'activo'";
+        String sql = "select idProducto, nombre, unidad, costo from productos where estatus = 'activo'";
         try {
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
@@ -50,12 +57,38 @@ public class ControladorProducto {
                 datos[0] = rs.getInt("IdProducto");
                 datos[1] = rs.getString("nombre");
                 datos[2] = rs.getString("unidad");
-                datos[3] = rs.getDouble("precio");
+                datos[3] = rs.getDouble("costo");
                 modelo.addRow(datos);
             }
             vProductos.listProductos.setModel(modelo);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
+    }
+    
+    public static void insertar(){
+        String nom = vAgregarP.nombre.getText();
+        String un = (String)vAgregarP.unidad.getSelectedItem();
+        String co = vAgregarP.costo.getText();
+        String es = "activo";
+        try {
+            if(vAgregarP.nombre.equals("")||vAgregarP.unidad.equals("")||vAgregarP.costo.equals("")){
+                JOptionPane.showMessageDialog(null, "Falta agregar datos");
+            }else{
+                String sql = "INSERT INTO productos (nombre, unidad, costo, estatus) values ('"+nom+"','"+un+"','"+co+"','"+es+"')";
+                conexion = con.obtenerConexion();
+                st = conexion.createStatement();
+                st.executeUpdate(sql);
+                vAgregarP.dispose();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
+    }
+    
+    public static void limpiarTabla(){
+        while (vProductos.listProductos.getRowCount() > 0) {
+            modelo.removeRow(0);
         }
     }
 }

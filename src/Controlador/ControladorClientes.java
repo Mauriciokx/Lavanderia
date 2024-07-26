@@ -35,6 +35,7 @@ public class ControladorClientes {
     public static void mostrar(JDesktopPane principal, JInternalFrame vClientes){
         principal.add(vClientes);
         vClientes.show();
+        limpiarTabla();
         consultar();
     }
     
@@ -80,11 +81,16 @@ public class ControladorClientes {
                 conexion = con.obtenerConexion();
                 st = conexion.createStatement();
                 st.executeUpdate(sql);
+                vAgregarC.dispose();
             } 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
-        
-        //public static Cliente cliente = new Cliente();
+    }
+    
+    public static void limpiarTabla(){
+        while (vClientes.listClientes.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
     }
 }

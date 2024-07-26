@@ -12,6 +12,8 @@ import static Controlador.ControladorProducto.vProductos;
 import Controlador.ControladorPromocion;
 import static Controlador.ControladorPromocion.vPromociones;
 import static Controlador.ControladorClientes.vAgregarC;
+import static Controlador.ControladorProducto.vAgregarP;
+import static Controlador.ControladorPromocion.vAgregarPr;
 /**
  *
  * @author Mauricio Pacheco
@@ -45,8 +47,10 @@ public class Principal extends javax.swing.JFrame {
         agregarCli = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         catalogo = new javax.swing.JMenuItem();
+        agregarProducto = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         promociones = new javax.swing.JMenuItem();
+        agregarPromocion = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -119,6 +123,14 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu3.add(catalogo);
 
+        agregarProducto.setText("Agregar producto");
+        agregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarProductoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(agregarProducto);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes icon/promocion.png"))); // NOI18N
@@ -131,6 +143,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(promociones);
+
+        agregarPromocion.setText("Agregar promoción");
+        agregarPromocion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarPromocionActionPerformed(evt);
+            }
+        });
+        jMenu4.add(agregarPromocion);
 
         jMenuBar1.add(jMenu4);
 
@@ -188,6 +208,16 @@ public class Principal extends javax.swing.JFrame {
         ControladorClientes.mostrar2(principal, vAgregarC);
     }//GEN-LAST:event_agregarCliActionPerformed
 
+    private void agregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProductoActionPerformed
+        // TODO add your handling code here:
+        ControladorProducto.mostrar2(principal, vAgregarP);
+    }//GEN-LAST:event_agregarProductoActionPerformed
+
+    private void agregarPromocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarPromocionActionPerformed
+        // TODO add your handling code here:
+        ControladorPromocion.mostrar2(principal, vAgregarPr);
+    }//GEN-LAST:event_agregarPromocionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,6 +257,8 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JMenuItem agregarCli;
+    public javax.swing.JMenuItem agregarProducto;
+    public javax.swing.JMenuItem agregarPromocion;
     public javax.swing.JMenuItem catalogo;
     public javax.swing.JMenuItem clientes;
     public javax.swing.JMenu jMenu3;
