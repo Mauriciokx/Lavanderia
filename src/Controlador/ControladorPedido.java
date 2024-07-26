@@ -28,7 +28,7 @@ import java.sql.SQLException;
  */
 public class ControladorPedido {
     //public static AgregarPedido v4 = new AgregarPedido();
-    public static DefaultTableModel model = new DefaultTableModel();
+    public static DefaultTableModel model;
     public static int cont = 0;
     public static Principal vPrinciapal = new Principal();
     public static Pedidos vPedidos = new Pedidos();
@@ -40,10 +40,16 @@ public class ControladorPedido {
     public static Conexion con = new Conexion();
     
     public static void agregarProducto(){
-        
+        String nomPro = (String)vAgregarPed.producto.getSelectedItem();
+        int can = Integer.parseInt(vAgregarPed.cantidad.getText());
+        double precio = consultarProducto();
+        cont = cont+1;
+        double costo = 0;
+        costo = can*precio;
+        model = (DefaultTableModel) vAgregarPed.listProductos.getModel();
+        model.addRow(new Object[]{cont,nomPro, can, costo});
     }
 
-    
     public static void agregarPedido(){
        
     }
@@ -122,5 +128,22 @@ public class ControladorPedido {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
+    }
+    
+    public static double consultarProducto(){
+        String pro = (String)vAgregarPed.producto.getSelectedItem();
+        String sql = "select costo from productos where nombre = '"+pro+"'";
+        double pre=0;
+        try {
+            conexion = con.obtenerConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                pre = rs.getDouble("costo");
+            }
+        } catch (Exception e) {
+        }
+        return pre;
     }
 }
