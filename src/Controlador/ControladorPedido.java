@@ -6,9 +6,11 @@
 package Controlador;
 
 import Conexion.Conexion;
+import static Controlador.ControladorNota.vNota;
 import Vista.AgregarPedido;
 import Modelo.Pedido;
 import Modelo.Producto;
+import Vista.Nota;
 import Vista.Pedidos;
 import Vista.Principal;
 import java.sql.Connection;
@@ -32,7 +34,7 @@ public class ControladorPedido {
     //public static AgregarPedido v4 = new AgregarPedido();
     public static DefaultTableModel model;
     public static int cont = 0;
-    public static Principal vPrinciapal = new Principal();
+    public static Principal vPrincipal = new Principal();
     public static Pedidos vPedidos = new Pedidos();
     public static AgregarPedido vAgregarPed = new AgregarPedido();
     public static Connection conexion;
@@ -40,6 +42,7 @@ public class ControladorPedido {
     public static Statement st;
     public static ResultSet rs;
     public static Conexion con = new Conexion();
+    //public static Nota vNota = new Nota();
     
     public static void agregarProducto(){
         String nomPro = (String)vAgregarPed.producto.getSelectedItem();
@@ -66,6 +69,8 @@ public class ControladorPedido {
             st = conexion.createStatement();
             st.executeUpdate(sql);
             vAgregarPed.dispose();
+            //Llamado a la ventana nota
+            ControladorNota.mostrar(vPrincipal.principal, vNota);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }

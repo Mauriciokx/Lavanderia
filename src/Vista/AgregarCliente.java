@@ -208,8 +208,7 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        ControladorClientes.insertarCliente();
-        
+        ControladorClientes.insertarClientes();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
 
