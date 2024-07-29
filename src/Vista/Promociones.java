@@ -5,6 +5,8 @@
 package Vista;
 
 import Controlador.ControladorPromocion;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,6 +52,8 @@ public class Promociones extends javax.swing.JInternalFrame {
         fFin = new com.toedter.calendar.JDateChooser();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        ID = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximizable(true);
@@ -60,7 +64,7 @@ public class Promociones extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "No", "Nombre", "Descripción", "Producto", "Cantidad", "Costo", "Fecha inicio", "Fecha fin"
+                "ID", "Nombre", "Descripción", "Producto", "Cantidad", "Costo", "Fecha inicio", "Fecha fin"
             }
         ) {
             Class[] types = new Class [] {
@@ -113,6 +117,10 @@ public class Promociones extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel9.setText("ID:");
+
+        ID.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,7 +140,7 @@ public class Promociones extends javax.swing.JInternalFrame {
                             .addComponent(jScrollPane2)
                             .addComponent(nombre))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -146,7 +154,8 @@ public class Promociones extends javax.swing.JInternalFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(cantidad)
-                                            .addComponent(costo))))
+                                            .addComponent(costo)
+                                            .addComponent(ID))))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
@@ -156,6 +165,8 @@ public class Promociones extends javax.swing.JInternalFrame {
                                     .addComponent(fInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                                     .addComponent(fFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnModificar)
                                 .addGap(50, 50, 50)
                                 .addComponent(btnEliminar)))
@@ -191,18 +202,23 @@ public class Promociones extends javax.swing.JInternalFrame {
                                 .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8))
                             .addComponent(fFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnModificar)
-                                    .addComponent(btnEliminar))))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                                    .addComponent(btnEliminar)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,15 +237,23 @@ public class Promociones extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        ControladorPromocion.modificarPromociones(nombre.getText(),descripcion.getText(),(String)producto.getSelectedItem(),cantidad.getText(),costo.getText(),fInicio.getDateFormatString(),fFin.getDateFormatString());
+        Date selectedDate = fInicio.getDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String fI = dateFormat.format(selectedDate);
+        
+        Date selectedDate2 = fFin.getDate();
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+        String fF = dateFormat2.format(selectedDate2);
+        ControladorPromocion.modificarPromociones(Integer.parseInt(ID.getText()),nombre.getText().toUpperCase(),descripcion.getText().toUpperCase(),(String)producto.getSelectedItem(),cantidad.getText(),costo.getText(),fI,fF);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void listPromocionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPromocionesMouseClicked
         // TODO add your handling code here:
         int fila = listPromociones.getSelectedRow();
-        if(fila == 1){
+        if(fila == -1){
             JOptionPane.showMessageDialog(null, "No se selecciono la fila");
         }else{
+            String id = (String)listPromociones.getValueAt(fila, 0).toString();
             String nom = (String)listPromociones.getValueAt(fila, 1).toString();
             String des = (String)listPromociones.getValueAt(fila, 2).toString();
             String pro = (String)listPromociones.getValueAt(fila, 3).toString();
@@ -238,6 +262,7 @@ public class Promociones extends javax.swing.JInternalFrame {
             String fIn = (String)listPromociones.getValueAt(fila, 6).toString();
             String fFi = (String)listPromociones.getValueAt(fila, 7).toString();
             
+            ID.setText(id);
             nombre.setText(nom);
             descripcion.setText(des);
             //producto.setText(pro);
@@ -248,11 +273,12 @@ public class Promociones extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        ControladorPromocion.eliminarPromociones(nombre.getText());
+        ControladorPromocion.eliminarPromociones(Integer.parseInt(ID.getText()));
     }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTextField ID;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     public javax.swing.JTextField cantidad;
@@ -268,6 +294,7 @@ public class Promociones extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

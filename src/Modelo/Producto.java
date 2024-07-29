@@ -103,9 +103,9 @@ public class Producto {
         }
     }
     
-    public static void modificarProducto(String nom,String un,double costo){
+    public static void modificarProducto(int id,String nom,String un,double costo){
         try {
-            String sql = "Update productos set nombre='"+nom+"',unidad='"+un+"',costo="+costo+" where nombre='"+nom+"'";
+            String sql = "Update productos set nombre='"+nom+"',unidad='"+un+"',costo="+costo+" where idProducto="+id;
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
             st.executeUpdate(sql);
@@ -115,10 +115,10 @@ public class Producto {
         }
     }
     
-    public static void eliminarProducto(String nom){
+    public static void eliminarProducto(int id){
         try {
             int es = 0;
-            String sql = "Update productos set estatus='"+es+"' where nombre ='"+nom+"'";
+            String sql = "Update productos set estatus='"+es+"' where idProducto ="+id;
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
             st.executeUpdate(sql);

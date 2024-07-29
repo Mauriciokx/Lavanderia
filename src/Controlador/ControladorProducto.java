@@ -43,49 +43,6 @@ public class ControladorProducto {
         principal.add(frmAgregarProducto);
         frmAgregarProducto.show();
     }
-    /*
-    public static void consultar(){
-        String sql = "select idProducto, nombre, unidad, costo from productos where estatus = 'activo'";
-        try {
-            conexion = con.obtenerConexion();
-            st = conexion.createStatement();
-            rs = st.executeQuery(sql);
-            Object[] datos = new Object[4];
-            modelo = (DefaultTableModel) vProductos.listProductos.getModel();
-            
-            while(rs.next()){
-                datos[0] = rs.getInt("IdProducto");
-                datos[1] = rs.getString("nombre");
-                datos[2] = rs.getString("unidad");
-                datos[3] = rs.getDouble("costo");
-                modelo.addRow(datos);
-            }
-            vProductos.listProductos.setModel(modelo);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error"+e.toString());
-        }
-    }
-    /*
-    public static void insertar(){
-        String nom = vAgregarP.nombre.getText();
-        String un = (String)vAgregarP.unidad.getSelectedItem();
-        String co = vAgregarP.costo.getText();
-        String es = "activo";
-        try {
-            if(vAgregarP.nombre.equals("")||vAgregarP.unidad.equals("")||vAgregarP.costo.equals("")){
-                JOptionPane.showMessageDialog(null, "Falta agregar datos");
-            }else{
-                String sql = "INSERT INTO productos (nombre, unidad, costo, estatus) values ('"+nom+"','"+un+"','"+co+"','"+es+"')";
-                conexion = con.obtenerConexion();
-                st = conexion.createStatement();
-                st.executeUpdate(sql);
-                vAgregarP.dispose();
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error"+e.toString());
-        }
-    }
-    */
     
     public static void limpiarTabla(){
         while (vProductos.listProductos.getRowCount() > 0) {
@@ -95,27 +52,30 @@ public class ControladorProducto {
     }
     
     public static void agregarProductos(){
-        String nombre = vAgregarP.nombre.getText();
-        String unidad = (String)vAgregarP.unidad.getSelectedItem();
+        String nombre = vAgregarP.nombre.getText().toUpperCase();
+        String unidad0 = (String)vAgregarP.unidad.getSelectedItem();
+        String unidad = unidad0.toUpperCase();
         String costo = vAgregarP.costo.getText();
         int es = 1;
         Producto.agregarProducto(nombre, unidad, costo, es);
         vAgregarP.dispose();
     }
     
-    public static void modificarProductos(String nom,String un,double costo){
-        Producto.modificarProducto(nom, un, costo);
+    public static void modificarProductos(int id,String nom,String un,double costo){
+        Producto.modificarProducto(id,nom, un, costo);
         limpiarTabla();
         Producto.consultarProductos(vProductos);
         vProductos.nombre.setText("");
         vProductos.costo.setText("");
+        vProductos.ID.setText("");
     }
     
-    public static void eliminarProductos(String nom){
-        Producto.eliminarProducto(nom);
+    public static void eliminarProductos(int id){
+        Producto.eliminarProducto(id);
         limpiarTabla();
         Producto.consultarProductos(vProductos);
         vProductos.nombre.setText("");
         vProductos.costo.setText("");
+        vProductos.ID.setText("");
     }
 }

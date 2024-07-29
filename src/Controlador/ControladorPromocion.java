@@ -18,6 +18,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author Mauricio Pacheco
@@ -59,25 +61,36 @@ public class ControladorPromocion {
         String prod = (String)vAgregarPr.producto.getSelectedItem();
         String can = vAgregarPr.cantidad.getText();
         String costo = vAgregarPr.costo.getText();
-        String fI = vAgregarPr.fechaI.getDateFormatString();
-        String fF = vAgregarPr.fechaF.getDateFormatString();
+        
+        Date selectedDate = vAgregarPr.fechaI.getDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String fI = dateFormat.format(selectedDate);
+        
+        Date selectedDate2 = vAgregarPr.fechaF.getDate();
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+        String fF = dateFormat2.format(selectedDate2);
+        
+        
+        //String fI = vAgregarPr.fechaI.getDateFormatString();
+        //String fF = vAgregarPr.fechaF.getDateFormatString();
         int es = 1;
         Promocion.agregarPromocion(nom, des, prod, can, costo, fI, fF, es);
         vAgregarPr.dispose();
     }
     
-    public static void modificarPromociones(String nom,String des,String pro,String can,String cos,String fI,String fF){
-        Promocion.modificarPromocion(nom, des, pro, can, cos, fI, fF);
+    public static void modificarPromociones(int id,String nom,String des,String pro,String can,String cos,String fI,String fF){
+        Promocion.modificarPromocion(id,nom, des, pro, can, cos, fI, fF);
         limpiarTabla();
         Promocion.consultarPromociones(vPromociones);
         vPromociones.nombre.setText("");
+        vPromociones.ID.setText("");
         vPromociones.descripcion.setText("");
         vPromociones.cantidad.setText("");
         vPromociones.costo.setText("");
     }
     
-    public static void eliminarPromociones(String nom){
-        Promocion.eliminarPromocion(nom);
+    public static void eliminarPromociones(int id){
+        Promocion.eliminarPromocion(id);
         limpiarTabla();
         Promocion.consultarPromociones(vPromociones);
         vPromociones.nombre.setText("");

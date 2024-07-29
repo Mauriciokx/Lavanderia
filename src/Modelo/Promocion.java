@@ -125,9 +125,9 @@ public class Promocion {
         }
     }
     
-    public static void modificarPromocion(String nom,String des,String pro,String can,String cos,String fI,String fF){
+    public static void modificarPromocion(int id,String nom,String des,String pro,String can,String cos,String fI,String fF){
         try {
-            String sql = "Update promociones set nombre='"+nom+"',descripcion='"+des+"',producto='"+pro+"',cantidad='"+can+"',costo='"+cos+"',fechaInicio='"+fI+"',fechaFin='"+fF+"' where nombre ='"+nom+"'";
+            String sql = "Update promociones set nombre='"+nom+"',descripcion='"+des+"',producto='"+pro+"',cantidad='"+can+"',costo='"+cos+"',fechaInicio='"+fI+"',fechaFin='"+fF+"' where idPromocion ="+id;
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
             st.executeUpdate(sql);
@@ -137,10 +137,10 @@ public class Promocion {
         }
     }
     
-    public static void eliminarPromocion(String nom){
+    public static void eliminarPromocion(int id){
         try {
             int es = 0;
-            String sql = "Update promociones set estatus='"+es+"' where nombre ='"+nom+"'";
+            String sql = "Update promociones set estatus='"+es+"' where idPromocion ="+id;
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
             st.executeUpdate(sql);
