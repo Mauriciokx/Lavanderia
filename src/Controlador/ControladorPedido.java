@@ -21,8 +21,13 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 
 /**
@@ -42,7 +47,12 @@ public class ControladorPedido {
     public static Statement st;
     public static ResultSet rs;
     public static Conexion con = new Conexion();
-    //public static Nota vNota = new Nota();
+    
+    //Varibles para folio
+    private static final int FOLIO_LENGTH = 5;
+    private static final int MAX_FOLIOS = (int) Math.pow(10, FOLIO_LENGTH); // 100000
+    private static final Set<Integer> generatedFolios = new HashSet<>();
+    private static final Random random = new Random();
     
     public static void agregarProducto(){
         String nomPro = (String)vAgregarPed.producto.getSelectedItem();
@@ -54,30 +64,6 @@ public class ControladorPedido {
         model = (DefaultTableModel) vAgregarPed.listProductos.getModel();
         model.addRow(new Object[]{cont,nomPro, can, costo});
     }
-    /*
-    public static void agregarPedido(){
-        String nomCliente = (String)vAgregarPed.nomCliente.getSelectedItem();
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String fechaI = currentDate.format(formatter);
-        String fechaP = vAgregarPed.fEntrega.getDateFormatString();
-        int es = 1;
-        
-        try {
-            String sql = "insert into pedidos (nombreCliente, fechaIngreso, fechaEntregaP, estatus) values ('"+nomCliente+"','"+fechaI+"','"+fechaP+"',"+es+")";
-            conexion = con.obtenerConexion();
-            st = conexion.createStatement();
-            st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Pedido agregado");
-            vAgregarPed.dispose();
-            //Llamado a la ventana nota
-            //ControladorNota.mostrar(vPrincipal.principal, vNota);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error"+e.toString());
-        }
-       
-    }
-    */
     
     public static void mostrar(JDesktopPane principal, Pedidos frmPedidos){
         principal.add(frmPedidos);
@@ -91,6 +77,7 @@ public class ControladorPedido {
         frmAgregarPedido.show();
         llenarComboProductos();
         llenarComboClientes();
+        frmAgregarPedido.folio.setText(generarFolio());
     }
     
     public static void limpiarTabla(){
@@ -151,10 +138,32 @@ public class ControladorPedido {
     
     public static void agregarPedidos(){
         String nom = (String)vAgregarPed.nomCliente.getSelectedItem();
-        String fE = vAgregarPed.fEntrega.getDateFormatString();
+        Date selectedDate = vAgregarPed.fEntrega.getDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String fE = dateFormat.format(selectedDate);
         int es = 1;
         String folio = vAgregarPed.folio.getText();
         Pedido.agregarPedido(nom, fE, es, folio);
         vAgregarPed.dispose();
     }
+    
+    public static void aplicarPromocion(){
+        
+    }
+    
+    public static String generarFolio() {
+        if (generatedFolios.size() == MAX_FOLIOS) {
+            throw new RuntimeException("Todos los folios posibles han sido generados.");
+        }
+
+        int folio;
+        do {
+            folio = random.nextInt(MAX_FOLIOS);
+        } while (generatedFolios.contains(folio));
+
+        generatedFolios.add(folio);
+        return String.format("%05d", folio); // Formatear a 5 cifras con ceros iniciales si es necesario
+    }
+    
+    
 }
