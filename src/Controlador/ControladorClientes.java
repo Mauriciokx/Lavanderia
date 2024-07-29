@@ -63,9 +63,9 @@ public class ControladorClientes {
     
     //Metodo de llamado para insertar clientes
     public static void insertarClientes(){
-        String nom = vAgregarC.nombre.getText();
+        String nom = vAgregarC.nombre.getText().toUpperCase();
         String tel = vAgregarC.telefono.getText();
-        String dir = vAgregarC.direccion.getText();
+        String dir = vAgregarC.direccion.getText().toUpperCase();
         String rfc = vAgregarC.rfc.getText();
         int es = 1;
         Cliente.insertarCliente(nom, tel, dir, rfc, es);
@@ -73,24 +73,26 @@ public class ControladorClientes {
     }
     
     //Metodo para llamar modificar cliente
-    public static void modificarClientes(String nom,String tel,String dir,String rfc){
-        Cliente.modificarCliente(nom, tel, dir, rfc);
+    public static void modificarClientes(int id,String nom,String tel,String dir,String rfc){
+        Cliente.modificarCliente(id,nom, tel, dir, rfc);
         limpiarTabla();
         Cliente.consultarClientes(vClientes);
         vClientes.nombre.setText("");
         vClientes.telefono.setText("");
         vClientes.direccion.setText("");
         vClientes.campoRfc.setText("");
+        vClientes.ID.setText("");
     }
     
-    public static void eliminarClientes(String rfc){
-        Cliente.eliminarCliente(rfc);
+    public static void eliminarClientes(int id){
+        Cliente.eliminarCliente(id);
         limpiarTabla();
         Cliente.consultarClientes(vClientes);
         vClientes.nombre.setText("");
         vClientes.telefono.setText("");
         vClientes.direccion.setText("");
         vClientes.campoRfc.setText("");
+        vClientes.ID.setText("");
     }
     
 }

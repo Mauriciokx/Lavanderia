@@ -5,6 +5,8 @@
 package Vista;
 
 import Controlador.ControladorClientes;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Mauricio Pacheco
@@ -208,7 +210,22 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        ControladorClientes.insertarClientes();
+        String tel = telefono.getText();
+        String rFC = rfc.getText();
+        String r = "[A-Z]{4}\\d{6}[A-Z0-9]{3}"; //rfc ejemplo GODE561231GR8
+        
+        if(Pattern.matches("\\d{10}", tel)){
+            if(Pattern.matches(r, rFC)){
+                ControladorClientes.insertarClientes();
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos no validos para el RFC");
+                rfc.setText("");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos no validos para el telefono");
+            telefono.setText("");
+        }
+        //ControladorClientes.insertarClientes();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
 

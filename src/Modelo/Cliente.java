@@ -111,9 +111,9 @@ public class Cliente {
         }
     }
     
-    public static void modificarCliente(String nom,String tel, String dir,String rfc){
+    public static void modificarCliente(int id,String nom,String tel, String dir,String rfc){
         try {
-            String sql = "Update clientes set nombre='"+nom+"',telefono='"+tel+"',direccion='"+dir+"',rfc='"+rfc+"' where rfc ='"+rfc+"'";
+            String sql = "Update clientes set nombre='"+nom+"',telefono='"+tel+"',direccion='"+dir+"',rfc='"+rfc+"' where idClientes ="+id;
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
             st.executeUpdate(sql);
@@ -123,10 +123,10 @@ public class Cliente {
         }
     }
     
-    public static void eliminarCliente(String rfc){
+    public static void eliminarCliente(int id){
         try {
             int es = 0;
-            String sql = "Update clientes set estatus='"+es+"' where rfc ='"+rfc+"'";
+            String sql = "Update clientes set estatus='"+es+"' where idClientes ="+id;
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
             st.executeUpdate(sql);
