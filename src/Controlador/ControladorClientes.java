@@ -52,61 +52,6 @@ public class ControladorClientes {
         principal.add(frmAgregarCliente);
         frmAgregarCliente.show();
     }
-    /* No lo usare :v
-    public static void mostrar3(JDesktopPane principal, ModificarCliente frmModificarCliente){
-        principal.add(frmModificarCliente);
-        frmModificarCliente.show();
-        //llenarCampos(frmModificarCliente);
-    }
-    */
-    
-    //Metodo cambiado al modelo de Cliente
-    /*
-    public static void consultar(){
-        String sql = "select idClientes, nombre, telefono, direccion, rfc from clientes where estatus = 1";
-        try {
-            conexion = con.obtenerConexion();
-            st = conexion.createStatement();
-            rs = st.executeQuery(sql);
-            Object[] datos = new Object[5];
-            modelo = (DefaultTableModel) vClientes.listClientes.getModel();
-            
-            while(rs.next()){
-                datos[0] = rs.getInt("IdClientes");
-                datos[1] = rs.getString("nombre");
-                datos[2] = rs.getString("telefono");
-                datos[3] = rs.getString("direccion");
-                datos[4] = rs.getString("rfc");
-                modelo.addRow(datos);
-            }
-            vClientes.listClientes.setModel(modelo);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error"+e.toString());
-        }
-    }
-    */
-    /*
-    public static void insertarCliente(){
-        String nom = vAgregarC.nombre.getText();
-        String tel = vAgregarC.telefono.getText();
-        String dir = vAgregarC.direccion.getText();
-        String rfc = vAgregarC.rfc.getText();
-        int es = 1;
-        try {
-            if(vAgregarC.nombre.equals("") || vAgregarC.telefono.equals("") || vAgregarC.direccion.equals("") || vAgregarC.rfc.equals("")){
-                JOptionPane.showMessageDialog(null, "Falta agregar datos");
-            }else{
-                String sql = "INSERT INTO clientes (nombre, telefono, direccion, rfc, estatus) values ('"+nom+"','"+tel+"','"+dir+"','"+rfc+"','"+es+"')";
-                conexion = con.obtenerConexion();
-                st = conexion.createStatement();
-                st.executeUpdate(sql);
-                vAgregarC.dispose();
-            } 
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error"+e.toString());
-        }
-    }
-    */
     
     //Metodo para limpiar la tabla
     public static void limpiarTabla(){

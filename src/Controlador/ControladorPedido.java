@@ -54,75 +54,54 @@ public class ControladorPedido {
         model = (DefaultTableModel) vAgregarPed.listProductos.getModel();
         model.addRow(new Object[]{cont,nomPro, can, costo});
     }
-
+    /*
     public static void agregarPedido(){
         String nomCliente = (String)vAgregarPed.nomCliente.getSelectedItem();
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String fechaI = currentDate.format(formatter);
         String fechaP = vAgregarPed.fEntrega.getDateFormatString();
-        String es = "activo";
+        int es = 1;
         
         try {
-            String sql = "insert into pedidos (nombreCliente, fechaIngreso, fechaEntregaP, estatus) values ('"+nomCliente+"','"+fechaI+"','"+fechaP+"','"+es+"')";
+            String sql = "insert into pedidos (nombreCliente, fechaIngreso, fechaEntregaP, estatus) values ('"+nomCliente+"','"+fechaI+"','"+fechaP+"',"+es+")";
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
             st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Pedido agregado");
             vAgregarPed.dispose();
             //Llamado a la ventana nota
-            ControladorNota.mostrar(vPrincipal.principal, vNota);
+            //ControladorNota.mostrar(vPrincipal.principal, vNota);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
        
     }
+    */
     
-    public static void mostrar(JDesktopPane principal, JInternalFrame vPedidos){
-        principal.add(vPedidos);
-        vPedidos.show();
+    public static void mostrar(JDesktopPane principal, Pedidos frmPedidos){
+        principal.add(frmPedidos);
+        frmPedidos.show();
         limpiarTabla();
-        consultar();
+        Pedido.consultarPedido(frmPedidos);
     }
     
-    public static void mostrar2(JDesktopPane principal, JInternalFrame vAgregarPed){
-        principal.add(vAgregarPed);
-        vAgregarPed.show();
+    public static void mostrar2(JDesktopPane principal, AgregarPedido frmAgregarPedido){
+        principal.add(frmAgregarPedido);
+        frmAgregarPedido.show();
         llenarComboProductos();
         llenarComboClientes();
     }
     
-    public static void consultar(){
-        String sql = "select idPedidos ,nombreCliente, fechaIngreso, fechaEntregaP, fechaEntregaR from pedidos where estatus = 'activo'";
-        try {
-            conexion = con.obtenerConexion();
-            st = conexion.createStatement();
-            rs = st.executeQuery(sql);
-            Object[] datos = new Object[5];
-            modelo = (DefaultTableModel) vPedidos.listPedidos.getModel();
-            
-            while(rs.next()){
-                datos[0] = rs.getInt("idPedidos");
-                datos[1] = rs.getString("nombreCliente");
-                datos[2] = rs.getString("fechaIngreso");
-                datos[3] = rs.getString("fechaEntregaP");
-                datos[4] = rs.getString("fechaEntregaR");
-                modelo.addRow(datos);
-            }
-            vPedidos.listPedidos.setModel(modelo);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error"+e.toString());
-        }
-        
-    }
-    
     public static void limpiarTabla(){
         while (vPedidos.listPedidos.getRowCount() > 0) {
+            modelo = (DefaultTableModel) vPedidos.listPedidos.getModel();
             modelo.removeRow(0);
         }
     }
     
     public static void llenarComboProductos(){
-        String sql = "select nombre from productos where estatus = 'activo'";
+        String sql = "select nombre from productos where estatus = 1";
         try {
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
@@ -138,7 +117,7 @@ public class ControladorPedido {
     }
     
     public static void llenarComboClientes(){
-        String sql = "select nombre from clientes where estatus = 'activo'";
+        String sql = "select nombre from clientes where estatus = 1";
         try {
             conexion = con.obtenerConexion();
             st = conexion.createStatement();
@@ -168,5 +147,14 @@ public class ControladorPedido {
         } catch (Exception e) {
         }
         return pre;
+    }
+    
+    public static void agregarPedidos(){
+        String nom = (String)vAgregarPed.nomCliente.getSelectedItem();
+        String fE = vAgregarPed.fEntrega.getDateFormatString();
+        int es = 1;
+        String folio = vAgregarPed.folio.getText();
+        Pedido.agregarPedido(nom, fE, es, folio);
+        vAgregarPed.dispose();
     }
 }

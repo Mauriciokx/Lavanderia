@@ -4,7 +4,17 @@
  */
 package Modelo;
 
+import Conexion.Conexion;
+import Vista.Pedidos;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -19,6 +29,13 @@ public class Pedido {
     private String rfc;
     //private Nota nota;
     private ArrayList<String> listProductos;
+    
+    //Variables de conexion
+    public static Connection conexion;
+    public static DefaultTableModel modelo;
+    public static Statement st;
+    public static ResultSet rs;
+    public static Conexion con = new Conexion();
 
     public Pedido(String nomCliente, String telefono, String direccion, String rfc, ArrayList<String> listProductos) {
         this.nomCliente = nomCliente;
@@ -80,6 +97,48 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido{" + "nomCliente=" + nomCliente + ", telefono=" + telefono + ", direccion=" + direccion + ", rfc=" + rfc + '}';
+    }
+    
+    public static void consultarPedido(Pedidos vPedidos){
+        String sql = "select idPedidos ,nombreCliente, fechaIngreso, fechaEntregaP, fechaEntregaR from pedidos where estatus = 1";
+        try {
+            conexion = con.obtenerConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(sql);
+            Object[] datos = new Object[5];
+            modelo = (DefaultTableModel) vPedidos.listPedidos.getModel();
+            
+            while(rs.next()){
+                datos[0] = rs.getInt("IdPedidos");
+                datos[1] = rs.getString("nombreCliente");
+                datos[2] = rs.getString("fechaIngreso");
+                datos[3] = rs.getString("fechaEntregaP");
+                datos[4] = rs.getString("fechaEntregaR");
+                modelo.addRow(datos);
+            }
+            vPedidos.listPedidos.setModel(modelo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
+    }
+    
+    public static void agregarPedido(String nom,String fEp,int es,String folio){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fI = currentDate.format(formatter);
+        try {
+            if(nom.equals("")){
+                JOptionPane.showMessageDialog(null, "Falta agregar datos");
+            }else{
+                String sql = "insert into pedidos (nombreCliente, fechaIngreso, fechaEntregaP, estatus, folio) values ('"+nom+"','"+fI+"','"+fEp+"',"+es+",'"+folio+"')";
+                conexion = con.obtenerConexion();
+                st = conexion.createStatement();
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "Pedido agregado");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
     }
 
 }
