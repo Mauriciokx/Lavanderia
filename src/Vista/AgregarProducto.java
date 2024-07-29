@@ -193,7 +193,7 @@ public class AgregarProducto extends javax.swing.JInternalFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        ControladorProducto.insertar();
+        ControladorProducto.agregarProductos();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
 

@@ -104,6 +104,7 @@ public class Cliente {
                 conexion = con.obtenerConexion();
                 st = conexion.createStatement();
                 st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "Cliente agregado");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());

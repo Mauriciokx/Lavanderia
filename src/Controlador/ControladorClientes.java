@@ -132,6 +132,20 @@ public class ControladorClientes {
         Cliente.modificarCliente(nom, tel, dir, rfc);
         limpiarTabla();
         Cliente.consultarClientes(vClientes);
+        vClientes.nombre.setText("");
+        vClientes.telefono.setText("");
+        vClientes.direccion.setText("");
+        vClientes.campoRfc.setText("");
+    }
+    
+    public static void eliminarClientes(String rfc){
+        Cliente.eliminarCliente(rfc);
+        limpiarTabla();
+        Cliente.consultarClientes(vClientes);
+        vClientes.nombre.setText("");
+        vClientes.telefono.setText("");
+        vClientes.direccion.setText("");
+        vClientes.campoRfc.setText("");
     }
     
 }

@@ -32,18 +32,18 @@ public class ControladorProducto {
     public static ResultSet rs;
     public static Conexion con = new Conexion();
 
-    public static void mostrar(JDesktopPane principal, JInternalFrame vProductos){
-        principal.add(vProductos);
-        vProductos.show();
+    public static void mostrar(JDesktopPane principal, Productos frmProductos){
+        principal.add(frmProductos);
+        frmProductos.show();
         limpiarTabla();
-        consultar();
+        Producto.consultarProductos(frmProductos);
     }
     
-    public static void mostrar2(JDesktopPane principal, JInternalFrame vAgregarP){
-        principal.add(vAgregarP);
-        vAgregarP.show();
+    public static void mostrar2(JDesktopPane principal, AgregarProducto frmAgregarProducto){
+        principal.add(frmAgregarProducto);
+        frmAgregarProducto.show();
     }
-    
+    /*
     public static void consultar(){
         String sql = "select idProducto, nombre, unidad, costo from productos where estatus = 'activo'";
         try {
@@ -65,7 +65,7 @@ public class ControladorProducto {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
     }
-    
+    /*
     public static void insertar(){
         String nom = vAgregarP.nombre.getText();
         String un = (String)vAgregarP.unidad.getSelectedItem();
@@ -85,10 +85,37 @@ public class ControladorProducto {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
     }
+    */
     
     public static void limpiarTabla(){
         while (vProductos.listProductos.getRowCount() > 0) {
+            modelo = (DefaultTableModel) vProductos.listProductos.getModel();
             modelo.removeRow(0);
         }
+    }
+    
+    public static void agregarProductos(){
+        String nombre = vAgregarP.nombre.getText();
+        String unidad = (String)vAgregarP.unidad.getSelectedItem();
+        String costo = vAgregarP.costo.getText();
+        int es = 1;
+        Producto.agregarProducto(nombre, unidad, costo, es);
+        vAgregarP.dispose();
+    }
+    
+    public static void modificarProductos(String nom,String un,double costo){
+        Producto.modificarProducto(nom, un, costo);
+        limpiarTabla();
+        Producto.consultarProductos(vProductos);
+        vProductos.nombre.setText("");
+        vProductos.costo.setText("");
+    }
+    
+    public static void eliminarProductos(String nom){
+        Producto.eliminarProducto(nom);
+        limpiarTabla();
+        Producto.consultarProductos(vProductos);
+        vProductos.nombre.setText("");
+        vProductos.costo.setText("");
     }
 }

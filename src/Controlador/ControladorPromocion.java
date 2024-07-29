@@ -6,6 +6,7 @@
 package Controlador;
 
 import Conexion.Conexion;
+import Modelo.Producto;
 import Vista.AgregarPromocion;
 import Modelo.Promocion;
 import Vista.Promociones;
@@ -31,18 +32,18 @@ public class ControladorPromocion {
     public static ResultSet rs;
     public static Conexion con = new Conexion();
     
-    public static void mostrar(JDesktopPane principal, JInternalFrame vPromociones){
-        principal.add(vPromociones);
-        vPromociones.show();
+    public static void mostrar(JDesktopPane principal, Promociones frmPromociones){
+        principal.add(frmPromociones);
+        frmPromociones.show();
         limpiarTabla();
-        consultar();
+        Promocion.consultarPromociones(frmPromociones);
     }
     
-    public static void mostrar2(JDesktopPane principal, JInternalFrame vAgregarPr){
-        principal.add(vAgregarPr);
-        vAgregarPr.show();
+    public static void mostrar2(JDesktopPane principal, AgregarPromocion frmAgregarPromocion){
+        principal.add(frmAgregarPromocion);
+        frmAgregarPromocion.show();
     }
-    
+    /*
     public static void consultar(){
         String sql = "select idPromocion, nombre, descripcion, producto, cantidad, costo, fechaInicio, fechaFin, estatusP from promociones where estatus = 'activo'";
         try {
@@ -94,10 +95,45 @@ public class ControladorPromocion {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
     }
+    */
     
     public static void limpiarTabla(){
         while (vPromociones.listPromociones.getRowCount() > 0) {
+            modelo = (DefaultTableModel) vPromociones.listPromociones.getModel();
             modelo.removeRow(0);
         }
+    }
+    
+    public static void agregarPromociones(){
+        String nom = vAgregarPr.nombre.getText();
+        String des = vAgregarPr.desc.getText();
+        String prod = (String)vAgregarPr.producto.getSelectedItem();
+        String can = vAgregarPr.cantidad.getText();
+        String costo = vAgregarPr.costo.getText();
+        String fI = vAgregarPr.fechaI.getDateFormatString();
+        String fF = vAgregarPr.fechaF.getDateFormatString();
+        int es = 1;
+        Promocion.agregarPromocion(nom, des, prod, can, costo, fI, fF, es);
+        vAgregarPr.dispose();
+    }
+    
+    public static void modificarPromociones(String nom,String des,String pro,String can,String cos,String fI,String fF){
+        Promocion.modificarPromocion(nom, des, pro, can, cos, fI, fF);
+        limpiarTabla();
+        Promocion.consultarPromociones(vPromociones);
+        vPromociones.nombre.setText("");
+        vPromociones.descripcion.setText("");
+        vPromociones.cantidad.setText("");
+        vPromociones.costo.setText("");
+    }
+    
+    public static void eliminarPromociones(String nom){
+        Promocion.eliminarPromocion(nom);
+        limpiarTabla();
+        Promocion.consultarPromociones(vPromociones);
+        vPromociones.nombre.setText("");
+        vPromociones.descripcion.setText("");
+        vPromociones.cantidad.setText("");
+        vPromociones.costo.setText("");
     }
 }
