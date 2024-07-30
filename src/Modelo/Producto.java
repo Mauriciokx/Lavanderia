@@ -127,4 +127,25 @@ public class Producto {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
     }
+    
+    public static double costoP;
+
+    public static double getCostoP() {
+        return costoP;
+    }
+    
+    public static void identificarProducto(String nom){
+        String sql = "select costo from productos where nombre = '"+nom+"'";
+        try {
+            conexion = con.obtenerConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                costoP = rs.getDouble("costo");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
+    }
 }

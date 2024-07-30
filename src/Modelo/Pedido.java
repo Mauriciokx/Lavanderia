@@ -77,15 +77,7 @@ public class Pedido {
     public void setRfc(String rfc) {
         this.rfc = rfc;
     }
-/*
-    public Nota getNota() {
-        return nota;
-    }
-
-    public void setNota(Nota nota) {
-        this.nota = nota;
-    }
-*/
+    
     public ArrayList<String> getListProductos() {
         return listProductos;
     }

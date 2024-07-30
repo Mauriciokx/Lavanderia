@@ -149,5 +149,32 @@ public class Promocion {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
     }
+    
+    public static String costoP;
+    public static String cantidadP;
+
+    public static String getCostoP() {
+        return costoP;
+    }
+
+    public static String getCantidadP() {
+        return cantidadP;
+    }
+    
+    public static void identificarPromocion(String nomPro){
+        String sql = "select costo, cantidad from promociones where producto = '"+nomPro+"'";
+        try {
+            conexion = con.obtenerConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                costoP = rs.getString("costo");
+                cantidadP = rs.getString("cantidad");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
+    }
      
 }

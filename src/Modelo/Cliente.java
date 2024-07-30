@@ -136,4 +136,42 @@ public class Cliente {
         }
     }
     
+    public static String nomC;
+    public static String telC;
+    public static String dirC;
+    public static String rfcC;
+
+    public static String getNomC() {
+        return nomC;
+    }
+
+    public static String getTelC() {
+        return telC;
+    }
+
+    public static String getDirC() {
+        return dirC;
+    }
+
+    public static String getRfcC() {
+        return rfcC;
+    }
+    
+    public static void buscarCliente(String nom){
+        String sql = "select telefono, direccion, rfc from clientes where nombre ='"+nom+"'";
+        try {
+            conexion = con.obtenerConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                //nomC = rs.getString("nombre");
+                telC = rs.getString("telefono");
+                dirC = rs.getString("direccion");
+                rfcC = rs.getString("rfc");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
+    }
 }

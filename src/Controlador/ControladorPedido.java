@@ -7,9 +7,11 @@ package Controlador;
 
 import Conexion.Conexion;
 import static Controlador.ControladorNota.vNota;
+import Modelo.Cliente;
 import Vista.AgregarPedido;
 import Modelo.Pedido;
 import Modelo.Producto;
+import Modelo.Promocion;
 import Vista.Nota;
 import Vista.Pedidos;
 import Vista.Principal;
@@ -146,9 +148,51 @@ public class ControladorPedido {
         Pedido.agregarPedido(nom, fE, es, folio);
         vAgregarPed.dispose();
     }
+    /*
+    public static void aplicarPromocion(){
+        String nomPro = (String)vAgregarPed.producto.getSelectedItem();
+        Promocion.identificarPromocion(nomPro);
+        int cantidad = Integer.parseInt(Promocion.getCantidadP());
+        double costo = Double.parseDouble(Promocion.getCostoP());
+        double desc = costo/100;
+        int can = Integer.parseInt(vAgregarPed.cantidad.getText());
+        double semiTotal = Double.parseDouble(vAgregarPed.total.getText());
+        double total = Double.parseDouble(vAgregarPed.total.getText());
+        double totalFinal;
+        double descuentoTotal = Double.parseDouble(vAgregarPed.descuento.getText());
+        if(can >= cantidad){
+            semiTotal = desc*total;
+            totalFinal = semiTotal-total;
+            descuentoTotal = descuentoTotal+semiTotal;
+            
+        }
+    }
+    */
     
     public static void aplicarPromocion(){
+        String nomPro = (String)vAgregarPed.producto.getSelectedItem();
+        Promocion.identificarPromocion(nomPro);
+        Producto.identificarProducto(nomPro);
+        int cantidadPromo = Integer.parseInt(Promocion.getCantidadP());
+        double costoPromo = Double.parseDouble(Promocion.getCostoP());
+        double costoProd = Producto.getCostoP();
+        int can = Integer.parseInt(vAgregarPed.cantidad.getText());
+        double descuentoAplicable = costoPromo/100;
+        double totalProducto = costoProd * can;
+        double descuentoTotal = Double.parseDouble(vAgregarPed.descuento.getText());
+        double precioConDescuento;
+        double cantidadRestar;
+        double total = Double.parseDouble(vAgregarPed.total.getText());
         
+        if(can >= cantidadPromo){
+            cantidadRestar = descuentoAplicable*totalProducto;
+            precioConDescuento = totalProducto - cantidadRestar;
+            descuentoTotal = descuentoTotal + cantidadRestar;
+            total = total+precioConDescuento;
+            
+            vAgregarPed.descuento.setText(String.valueOf(descuentoTotal));
+            vAgregarPed.total.setText(String.valueOf(total));
+        }
     }
     
     public static String generarFolio() {
@@ -165,5 +209,11 @@ public class ControladorPedido {
         return String.format("%05d", folio); // Formatear a 5 cifras con ceros iniciales si es necesario
     }
     
-    
+    public static void llenarCamposCliente(String opc){
+        Cliente.buscarCliente(opc);
+        vAgregarPed.telefonoC.setText(Cliente.telC);
+        vAgregarPed.direccionC.setText(Cliente.getDirC());
+        vAgregarPed.rfcC.setText(Cliente.getRfcC());
+        
+    }
 }
