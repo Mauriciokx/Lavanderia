@@ -52,9 +52,9 @@ public class ControladorProducto {
     }
     
     public static void agregarProductos(){
-        String nombre = vAgregarP.nombre.getText().toUpperCase();
-        String unidad0 = (String)vAgregarP.unidad.getSelectedItem();
-        String unidad = unidad0.toUpperCase();
+        String nombre = vAgregarP.nombre.getText();
+        String unidad = (String)vAgregarP.unidad.getSelectedItem();
+        //String unidad = unidad0.toUpperCase();
         String costo = vAgregarP.costo.getText();
         int es = 1;
         Producto.agregarProducto(nombre, unidad, costo, es);

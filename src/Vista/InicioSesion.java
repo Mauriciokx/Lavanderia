@@ -8,6 +8,8 @@ import Vista.*;
 import Controlador.ControladorLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -160,7 +162,15 @@ public class InicioSesion extends javax.swing.JFrame {
         char[] caracterContraseña = contra.getPassword();
         String password = new String(caracterContraseña);
         //ControladorLogin.comprobar(usuario.getText(), contraseña.getText());
-        ControladorLogin.comprobar(usuario.getText(), password);
+        //ControladorLogin.comprobar(usuario.getText(), password);
+        
+        String r = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).+$";
+        if(Pattern.matches(r,password)){
+            ControladorLogin.comprobar(usuario.getText(), password);
+        }else{
+            JOptionPane.showMessageDialog(null, "La contraseña no cumple con los parametros establecidos");
+            contra.setText("");
+        }
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnInicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnInicioKeyPressed

@@ -12,6 +12,8 @@ import static Controlador.ControladorProducto.vProductos;
 import Controlador.ControladorPromocion;
 import static Controlador.ControladorPromocion.vPromociones;
 import static Controlador.ControladorClientes.vAgregarC;
+import Controlador.ControladorLogin;
+import static Controlador.ControladorLogin.v5;
 import static Controlador.ControladorPedido.vAgregarPed;
 import static Controlador.ControladorProducto.vAgregarP;
 import static Controlador.ControladorPromocion.vAgregarPr;
@@ -54,6 +56,7 @@ public class Principal extends javax.swing.JFrame {
         promociones = new javax.swing.JMenuItem();
         agregarPromocion = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        cerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,6 +169,15 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes icon/cerrar.png"))); // NOI18N
         jMenu5.setText("Cerrar sesión");
+
+        cerrarSesion.setText("Cerrar sesión");
+        cerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarSesionActionPerformed(evt);
+            }
+        });
+        jMenu5.add(cerrarSesion);
+
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -233,6 +245,14 @@ public class Principal extends javax.swing.JFrame {
         ControladorPedido.mostrar2(principal, vAgregarPed);
     }//GEN-LAST:event_agregarPedidoActionPerformed
 
+    private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ControladorLogin.mostrar();
+        v5.usuario.setText("");
+        v5.contra.setText("");
+    }//GEN-LAST:event_cerrarSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -276,6 +296,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JMenuItem agregarProducto;
     public javax.swing.JMenuItem agregarPromocion;
     public javax.swing.JMenuItem catalogo;
+    public javax.swing.JMenuItem cerrarSesion;
     public javax.swing.JMenuItem clientes;
     public javax.swing.JMenu jMenu3;
     public javax.swing.JMenu jMenu4;
